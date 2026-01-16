@@ -1,0 +1,15 @@
+.item-controls__button {
+    display: flex;
+    color: var(--color-gray-03);
+}
+
+.item-controls__edit {
+    &:hover {
+        color: var(--color-purple);
+    }
+}
+.item-controls__deleate {
+    &:hover {
+        color: var(--color-red);
+    }
+}

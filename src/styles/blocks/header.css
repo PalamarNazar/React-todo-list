@@ -1,0 +1,4 @@
+.header {
+    text-align: center;
+    margin-block: calc((40 / 16) * 1rem) calc((16 / 16) * 1rem);
+}

@@ -1,0 +1,30 @@
+.todo {
+    position: relative;
+}
+
+.todo__controls {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    column-gap: 1rem;
+    align-items: center;
+}
+
+.todo__list {
+    padding-block: calc((30 / 16) * 1rem);
+}
+
+@media (max-width: 750px) {
+    .todo__controls {
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+        'search search'
+        'filters theme';
+        column-gap: 0;
+        row-gap: 1rem;
+        
+    }
+
+    .todo__search-form {
+        grid-area: search;
+    }
+}

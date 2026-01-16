@@ -1,0 +1,11 @@
+.empty-message {
+    display: grid;
+    justify-content: center;
+    row-gap: 1.25rem;
+    padding-block: 1.875rem 1.25rem; 
+}
+
+.empty-message p {
+    text-align: center;
+    font-weight: 400;
+}

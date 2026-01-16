@@ -1,0 +1,57 @@
+html {
+    &.dark-theme {
+        --color-bg: var(--color-dark);
+        --color-text: var(--color-white);
+        --color-base: var(--color-white);
+        --color-outline: var(--color-gray-02);
+        --color-placeholder: var(--color-gray);
+    }
+}
+
+body {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    font-family: var(--font-family-base);
+    font-weight: 500;
+    background-color: var(--color-bg);
+    transition-duration: var(--transition-duration);
+    color: var(--color-text);
+}
+
+.h1, h1 {
+    font-size: calc((26 / 16) * 1rem);
+}
+.h2, h2 {
+    font-size: calc((24 / 16) * 1rem);
+    line-height: 100%;
+}
+.h3, h3 {
+    font-size: calc((20 / 16) * 1rem);
+    line-height: 100%;
+}
+
+a,
+button,
+label,
+input,
+textarea,
+select,
+svg * {
+    transition-duration: var(--transition-duration);
+}
+
+a {
+    color: inherit;
+    
+    &[class] {
+        text-decoration: none;
+    }
+}
+
+:focus-visible {
+    outline: 1px dashed var(--color-purple);
+    outline-offset: 3px;
+    transition-duration: 0s;
+}

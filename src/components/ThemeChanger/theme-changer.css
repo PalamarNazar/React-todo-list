@@ -1,0 +1,9 @@
+.theme-changer {
+    display: flex;
+    padding: calc((10 / 16) * 1rem);
+    border: none;
+
+    &:hover {
+        background-color: var(--color-purple-02);
+    }
+}

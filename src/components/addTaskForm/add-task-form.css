@@ -1,0 +1,21 @@
+.add-form {
+    flex-grow: 1;
+    display: grid;
+    grid-template-rows: auto 1fr;
+}
+.add-form__button-box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1rem;
+    align-self: end;
+}
+
+.add-form__button {
+    font-size: calc((18 / 16) * 1rem);
+    line-height: 100%;
+    text-transform: uppercase;
+    padding-block: calc((10 / 16) * 1rem);
+    padding-inline: calc((22 / 16) * 1rem);
+    align-items: center;
+}
