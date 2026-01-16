@@ -1,21 +1,16 @@
-import Todo from "./components/Todo/Todo"
-import { TodoProvider } from './context/TodoContext'
-import ModalWin from "./components/modalWin/ModalWin"
-import Overlay from "./components/overlay/Overlay"
+import Router from "./Router"
+import ListPage from "./Pages/ListPage"
+import TaskPage from "./Pages/TaskPage"
 
 const App = () => {
-
+  const routes = {
+    '/': ListPage,
+    '/tasks/:id': TaskPage,
+    '*': () => <h1>Error, Page not Found...</h1>,
+  }
+  
   return (
-    <TodoProvider>
-        <Overlay />
-        <ModalWin />
-        <header className="header container">
-          <h1 className="todo__title">TODO LIST</h1>
-        </header>
-        <main className="main">
-          <Todo />
-        </main>
-    </TodoProvider>
+    <Router routes={routes} />
   )
 }
 

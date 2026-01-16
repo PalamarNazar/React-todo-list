@@ -10,6 +10,13 @@ const taskAPI = {
         })
     },
 
+    getById: async (id) => {
+        return fetch(`${URL}/${id}`).then((response) => {
+            if (!response.ok) return;
+            return response.json()
+        })
+    },
+
     add: async (task) => {
         return fetch(URL, {
             method: 'POST',

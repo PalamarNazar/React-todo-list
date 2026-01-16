@@ -18,3 +18,9 @@
     color: var(--color-purple);
     background-color: transparent;
 }
+
+.button-reset {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+}

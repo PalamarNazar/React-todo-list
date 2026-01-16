@@ -1,3 +1,5 @@
+import './field.css'
+
 const Field = (props) => {
     const { 
         onInput, 

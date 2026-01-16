@@ -9,6 +9,30 @@
     align-items: center;
 }
 
+.todo__prev-btn {
+    position: sticky;
+    top: 1rem;
+    left:  1rem;
+    padding: 0.5rem;
+}
+
+.todo__details {
+    display: grid;
+    justify-content: center;
+    text-align: center;
+}
+
+.todo__about {
+    word-break: break-all;
+}
+
+.todo__details-headers {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 1rem;
+}
+
 .todo__list {
     padding-block: calc((30 / 16) * 1rem);
 }

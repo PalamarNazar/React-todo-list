@@ -3,6 +3,7 @@ import ItemControls from '../ItemControls/ItemControls'
 import './todo-item.css';
 import { TodoContext } from '../../context/TodoContext';
 import EditForm from '../editForm/EditForm';
+import RouterLink from '../RouterLink/RouterLink';
 
 const TodoItem = (props) => {
     const { id, title, isDone } = props
@@ -23,7 +24,10 @@ const TodoItem = (props) => {
                     {editingTaskId === id 
                     ? 
                     <EditForm id={id}/>
-                    : <span className='task__title h3'>{title}</span>}
+                    : <RouterLink to={`/tasks/${id}`} className="tasks__item-link router-link" aria-label="Task details">
+                        <span className='task__title h3' aria-hidden="true">{title}</span>
+                    </RouterLink>}
+            
             <ItemControls taskId={id} />
         </li>
     )
