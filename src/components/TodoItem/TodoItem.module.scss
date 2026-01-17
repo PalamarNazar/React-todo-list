@@ -16,22 +16,22 @@
         border-color: var(--color-purple-opacity-02);
     }
 
-    &:hover .task__controls,
-    &:has(:focus-visible) .task__controls {
+    &:hover .controls,
+    &:has(:focus-visible) .controls {
         opacity: 1;
         pointer-events: auto;
     }
 }
-.tasks__item-link {
+.link {
     position: relative;
     
     &:hover,
-    input:checked ~ & .task__title:hover{
+    input:checked ~ & .title:hover{
         color: var(--color-purple);
     }
 }
 
-.task__title {
+.title {
     font-weight: 400;
     position: relative;
     white-space: nowrap;
@@ -42,7 +42,7 @@
     max-width: 350px; 
 }
 
-.task__checkbox {
+.checkbox {
   flex-shrink: 0;
   appearance: none;
   position: relative;
@@ -56,7 +56,7 @@
     background-color: var(--color-purple);
   }
 
-  &:checked ~ .tasks__item-link .task__title {
+  &:checked ~ .link .title {
         text-decoration: line-through;
         color: var(--color-gray-03);
     }
@@ -79,7 +79,7 @@
   }
 }
 
-.task__controls {
+.controls {
     display: flex;
     align-items: center;
     justify-self: end;
@@ -93,17 +93,13 @@
     .task {
         grid-template-columns: auto auto 1fr;
     }
-    .task__field:has(form) {
-    flex-direction: column;
-    align-items: start;
-    }
-    .task__title {
+    .title {
         max-width: 200px;
     }
 }
 
 @media (max-width: 400px) {
-    .task__title {
+    .title {
         max-width: 100px;
     }
 }

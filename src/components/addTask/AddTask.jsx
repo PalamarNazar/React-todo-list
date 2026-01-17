@@ -1,19 +1,19 @@
-import './add-task.css';
 import icon from '../../assets/images/plus.svg'
 import { useContext } from 'react';
-import { UiContext } from '../../context/TodoContext';
+import { UiContext } from '../../context/UiContext.jsx';
 import PurpleButton from '../purpleButton/PurpleButton';
+import styles from './AddTask.module.scss';
 
 
 const AddTask = () => {
     const { setIsOpenModalWin } = useContext(UiContext)
 
     return (
-        <PurpleButton className="todo__add-task add-task"
+        <PurpleButton className={styles.buttonAdd}
         onClick={() => setIsOpenModalWin(true)}
         buttonTitle='Add task'
         >
-            <img className="add-task__image" 
+            <img 
             src={icon} 
             alt="Add Task"  
             width="24"

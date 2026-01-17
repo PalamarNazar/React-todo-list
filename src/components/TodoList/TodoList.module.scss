@@ -1,0 +1,14 @@
+.list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-block: calc((30 / 16) * 1rem);
+}
+
+.emptyMessage {
+    display: grid;
+    justify-content: center;
+    text-align: center;
+    row-gap: 1rem;
+    padding-block: calc((30 / 16) * 1rem);
+}

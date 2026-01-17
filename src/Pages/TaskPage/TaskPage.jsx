@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import taskAPI from "../api/tasksAPI";
-import ThemeChanger from "../components/ThemeChanger/ThemeChanger";
-import PrevButton from "../components/PrevButton/PrevButton.jsx";
+import taskAPI from "../../api/tasksAPI.js";
+import PrevButton from "../../components/PrevButton/PrevButton.jsx";
+import styles from './TaskPage.module.scss'
 
 
 const TaskPage = (props) => {
@@ -27,9 +27,9 @@ const TaskPage = (props) => {
 
     if(loading) {
         return (
-            <section className="container todo__details">
-                <h2>Loading...</h2>
-            </section>
+            <div className={`${styles.details} container`}>
+                <h1>Loading...</h1>
+            </div>
         )
     }
 
@@ -37,9 +37,9 @@ const TaskPage = (props) => {
         return (
             <>
             <PrevButton />
-                <section className="container todo__details">
-                    <h2>Error, task not found</h2>
-                </section>
+                <div className={`${styles.details} container`}>
+                    <h1>Error, task not found</h1>
+                </div>
             </>
         )
     }
@@ -47,15 +47,12 @@ const TaskPage = (props) => {
     return (
         <>
         <PrevButton />
-        <section className="container todo__details">
-            <header className="todo__details-headers">
-                <h1>Task details.</h1>
-                <ThemeChanger />
-            </header>
+        <div className={`${styles.details} container`}>
+            <h1>Task details.</h1>
             <p>Status: {task.isDone ? "complete" : "incomplete"}.</p>
             <p>Tasks text:</p>
-            <p className="todo__about">{task.title}</p>
-        </section>
+            <p className={styles.aboutTask}>{task.title}</p>
+        </div>
         </>
     )
 }

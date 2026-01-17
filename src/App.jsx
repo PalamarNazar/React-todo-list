@@ -1,6 +1,7 @@
+import { UiProvider } from "./context/UiContext"
 import Router from "./Router"
-import ListPage from "./Pages/ListPage"
-import TaskPage from "./Pages/TaskPage"
+import ListPage from "./Pages/ListPage/ListPage"
+import TaskPage from "./Pages/TaskPage/TaskPage"
 
 const App = () => {
   const routes = {
@@ -10,7 +11,9 @@ const App = () => {
   }
   
   return (
-    <Router routes={routes} />
+    <UiProvider>
+      <Router routes={routes} />
+    </UiProvider>
   )
 }
 

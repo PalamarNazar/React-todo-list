@@ -1,4 +1,4 @@
-.modal-win__wrapper {
+.wrapper {
     position: fixed;
     padding-inline: 20px;
     top: 50%;
@@ -12,13 +12,13 @@
     transform-origin: top;
     scale: 1 0;
     z-index: 50;
-
-    &.is-open {
+    
+    &.isOpen {
         scale: 1 1;
     }
 }
 
-.modal-win {
+.modal {
     display: flex;
     flex-direction: column;
     row-gap: calc((25 / 16) * 1rem);
@@ -29,7 +29,7 @@
     height: inherit;
 }
 
-.modal-win__title {
+.modalTitle {
     text-align: center;
     text-transform: uppercase;
 }

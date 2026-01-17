@@ -1,3 +1,5 @@
+import styles from './PurpleButton.module.scss'
+
 const PurpleButton = (props) => {
 
     const { className = '', 
@@ -9,7 +11,7 @@ const PurpleButton = (props) => {
     } = props
 
     return (
-        <button className={`button ${className}`} 
+        <button className={`${styles.button} ${className}`} 
             onClick={onClick}
             type={type}
             aria-label={ aria ? buttonTitle : null}

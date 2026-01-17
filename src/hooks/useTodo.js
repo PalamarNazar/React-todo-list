@@ -32,7 +32,6 @@ export const useTodo = () => {
         taskAPI.add(newTask)
         .then((data) => {
             setTasks(tasks => [...tasks, data]);
-            setIsOpenModalWin(false);
             setNewTaskTitle('');
         })
     
@@ -44,7 +43,7 @@ export const useTodo = () => {
         })
     }, [])
 
-    const deleateTask = useCallback((taskId) => {
+    const deleteTask = useCallback((taskId) => {
         taskAPI.delete(taskId).then(() => {
             setTasks(prevTasks => prevTasks.filter((task) => task.id !== taskId))
         })
@@ -153,7 +152,7 @@ export const useTodo = () => {
         setSearchTaskTitle,
         filteredTasks,
         addTasks,
-        deleateTask,
+        deleteTask,
         activeOption,
         setActiveOption,
         editingTaskTitle, 

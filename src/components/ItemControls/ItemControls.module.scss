@@ -1,14 +1,14 @@
-.item-controls__button {
+.buttons {
     display: flex;
     color: var(--color-gray-03);
 }
 
-.item-controls__edit {
+.buttonEdit {
     &:hover {
         color: var(--color-purple);
     }
 }
-.item-controls__deleate {
+.buttonDelete {
     &:hover {
         color: var(--color-red);
     }

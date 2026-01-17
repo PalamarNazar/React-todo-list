@@ -1,6 +1,6 @@
 import { memo, useContext } from 'react';
-import './overlay.css';
-import { UiContext } from '../../context/TodoContext';
+import { UiContext } from '../../context/UiContext.jsx';
+import styles from './Overlay.module.scss';
 
 const Overlay = () => {
     const {
@@ -9,7 +9,7 @@ const Overlay = () => {
     } = useContext(UiContext);
 
     return (
-        <div className={`overlay ${isOpenModalWin ? 'is-active' : ''}`} onClick={() => setIsOpenModalWin(false)}></div>
+        <div className={`${styles.overlay} ${isOpenModalWin ? styles.isActive : ''}`} onClick={() => setIsOpenModalWin(false)}></div>
     )
 }
 

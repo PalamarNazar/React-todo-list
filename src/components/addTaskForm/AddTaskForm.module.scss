@@ -1,9 +1,9 @@
-.add-form {
+.form {
     flex-grow: 1;
     display: grid;
     grid-template-rows: auto 1fr;
 }
-.add-form__button-box {
+.buttonBox {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -11,11 +11,16 @@
     align-self: end;
 }
 
-.add-form__button {
+.formButton {
     font-size: calc((18 / 16) * 1rem);
     line-height: 100%;
     text-transform: uppercase;
     padding-block: calc((10 / 16) * 1rem);
     padding-inline: calc((22 / 16) * 1rem);
     align-items: center;
+}
+
+.buttonReset {
+    color: var(--color-purple);
+    background-color: transparent;
 }

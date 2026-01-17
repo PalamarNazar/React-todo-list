@@ -1,8 +1,8 @@
-.add-task {
+.buttonAdd {
     position: fixed;
     bottom: 2rem;
     right: 0.5rem;
-    padding: calc((13px / 16px) * 1rem);
+    padding: calc((13 / 16) * 1rem);
     border-radius: 50%;
 
     &:hover {

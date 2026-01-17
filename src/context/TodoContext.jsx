@@ -2,14 +2,12 @@ import { createContext } from "react";
 import { useTodo } from "../hooks/useTodo";
 
 export const TodoContext = createContext({});
-export const UiContext = createContext({})
+export const TodoUiContext = createContext({})
 
 export const TodoProvider = ({children}) => {
     
     const {
         tasks,
-        isOpenModalWin,
-        setIsOpenModalWin,
         toggleCheckedTask,
         setTasks,
         newTaskTitle,
@@ -18,7 +16,7 @@ export const TodoProvider = ({children}) => {
         setSearchTaskTitle,
         filteredTasks,
         addTasks,
-        deleateTask,
+        deleteTask,
         activeOption,
         setActiveOption,
         editingTaskTitle, 
@@ -30,8 +28,6 @@ export const TodoProvider = ({children}) => {
         setOpenList,
         editInputRef,
         editTaskApply,
-        errorMessage, 
-        setErrorMessage,
     } = useTodo();
 
     return (
@@ -44,7 +40,7 @@ export const TodoProvider = ({children}) => {
                 setNewTaskTitle,
                 filteredTasks,
                 addTasks,
-                deleateTask,
+                deleteTask,
                 startEditTask,
                 editingTaskTitle, 
                 setEditingTaskTitle,
@@ -53,21 +49,17 @@ export const TodoProvider = ({children}) => {
                 editInputRef,
                 editTaskApply,
         }}>
-            <UiContext.Provider 
+            <TodoUiContext.Provider 
             value={{
-                isOpenModalWin,
-                setIsOpenModalWin,
                 searchTaskTitle,
                 setSearchTaskTitle,
                 activeOption,
                 setActiveOption,
                 openList,
                 setOpenList,
-                errorMessage, 
-                setErrorMessage,
             }}>
                 {children}
-            </UiContext.Provider>
+            </TodoUiContext.Provider>
         </TodoContext.Provider>
     )
 }

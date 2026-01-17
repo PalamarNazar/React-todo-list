@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { TodoContext } from "../../context/TodoContext";
 import Field from "../field/Field";
 import PurpleButton from "../purpleButton/PurpleButton";
-import './edit-form.css'
+import styles from './EditForm.module.scss'
 
 const EditForm = (props) => {
 
@@ -21,17 +21,17 @@ const EditForm = (props) => {
     }
 
     return (
-    <form className="task__form-edit edit-form" onSubmit={(event) => onInput(event)}>
+    <form className={styles.form} onSubmit={(event) => onInput(event)}>
         <label htmlFor="edit-field" className='visually-hidden'>Edit Title</label>
 
-        <Field className="edit-form__input"
+        <Field
         id="edit-field"
         value={editingTaskTitle}
         onInput={(event) => setEditingTaskTitle(event.target.value)}
         ref={editInputRef}
          />
 
-        <PurpleButton className="edit-form__button"
+        <PurpleButton
         type="submit"
         buttonTitle="Edit title"
         >

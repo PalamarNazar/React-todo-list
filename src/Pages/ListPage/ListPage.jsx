@@ -1,7 +1,7 @@
-import Todo from "../components/Todo/Todo"
-import { TodoProvider } from '../context/TodoContext'
-import ModalWin from "../components/modalWin/ModalWin"
-import Overlay from "../components/overlay/Overlay"
+import Todo from "../../components/Todo/Todo"
+import { TodoProvider } from '../../context/TodoContext'
+import ModalWin from "../../components/modalWin/ModalWin"
+import Overlay from "../../components/overlay/Overlay"
 
 const ListPage = () => {
     return (

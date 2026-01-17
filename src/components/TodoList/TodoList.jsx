@@ -2,7 +2,7 @@ import { memo, useContext } from "react";
 import TodoItem from "../TodoItem/TodoItem";
 import { TodoContext } from "../../context/TodoContext";
 import detectiveDarkImage from '../../assets/images/Detective-dark.svg'
-import './list.css';
+import styles from './TodoList.module.scss';
 
 const TodoList = () => {
 
@@ -13,7 +13,7 @@ const TodoList = () => {
 
     if(!hasTasks) {
         return (
-            <div className="empty-message h3">
+            <div className={`${styles.emptyMessage} h3`}>
                 <p>{`You don't have any tasks yet.`}</p>
             </div>
         )
@@ -22,8 +22,8 @@ const TodoList = () => {
     if (hasTasks && isEmptyFilteredTasks) {
         return (
             <>
-            <div className="empty-message h3">
-            <img className="empty-message__image" 
+            <div className={`${styles.emptyMessage} h3`}>
+            <img 
             src={detectiveDarkImage} 
             alt="Tasks not found" 
             width="221" height="174"
@@ -35,7 +35,7 @@ const TodoList = () => {
     }
 
     return (
-        <ul className="todo__list list">
+        <ul className={styles.list}>
             {(filteredTasks ?? tasks).map((task) => (
                 <TodoItem key={task.id} {...task} />
             ))}

@@ -1,16 +1,16 @@
 import { useContext } from "react";
-import { UiContext } from "../../context/TodoContext";
+import { TodoUiContext } from "../../context/TodoContext";
+import styles from './FiltersTask.module.scss';
 
 const FilterTaskOption = (props) => {
     const { option } = props
     
-    const { setActiveOption } = useContext(UiContext);
+    const { activeOption, setActiveOption } = useContext(TodoUiContext);
     
     return (
         <li 
-        className="filters__option" 
-        key={option}>
-            <button className="filters__option-button button-reset" 
+        className={`${styles.option} ${activeOption === option ? styles.isActive : ''}`}>
+            <button className={`${styles.optionButton} button-reset`}
             onClick={() => setActiveOption(option)} 
             type='button'>
                 {option}

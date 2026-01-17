@@ -1,9 +1,9 @@
-import { useContext } from 'react';
+import { memo, useContext } from 'react';
 import ItemControls from '../ItemControls/ItemControls'
-import './todo-item.css';
 import { TodoContext } from '../../context/TodoContext';
 import EditForm from '../editForm/EditForm';
 import RouterLink from '../RouterLink/RouterLink';
+import styles from './TodoItem.module.scss';
 
 const TodoItem = (props) => {
     const { id, title, isDone } = props
@@ -14,23 +14,23 @@ const TodoItem = (props) => {
     } = useContext(TodoContext);
 
     return (
-        <li className="list__item task">
-                <input className="task__checkbox" 
+        <li className={styles.task}>
+                <input className={styles.checkbox} 
                 checked={isDone}
                 onChange={({target}) => toggleCheckedTask(id, target.checked)}
                 type="checkbox" 
                 id={id}/>
-                <label htmlFor={id} className="task__field visually-hidden">{title}</label>
+                <label htmlFor={id} className="visually-hidden">{title}</label>
                     {editingTaskId === id 
                     ? 
                     <EditForm id={id}/>
-                    : <RouterLink to={`/tasks/${id}`} className="tasks__item-link router-link" aria-label="Task details">
-                        <span className='task__title h3' aria-hidden="true">{title}</span>
+                    : <RouterLink to={`/tasks/${id}`} className={styles.link} aria-label="Task details">
+                        <span className={`${styles.title} h3`} aria-hidden="true">{title}</span>
                     </RouterLink>}
             
-            <ItemControls taskId={id} />
+            <ItemControls className={styles.controls} taskId={id} />
         </li>
     )
 }
 
-export default TodoItem;
+export default memo(TodoItem);

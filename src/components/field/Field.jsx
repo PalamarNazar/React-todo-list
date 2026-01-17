@@ -1,4 +1,4 @@
-import './field.css'
+import styles from './Field.module.scss'
 
 const Field = (props) => {
     const { 
@@ -10,21 +10,20 @@ const Field = (props) => {
         className = '',
         placeholder = '',
         value,
-        ref
+        ...rest
     } = props
 
     return (
-        <>
-            <input className={`purple-input ${className}`} 
-            type={type} 
-            id={id} 
-            name={name}
-            onInput={onInput}
-            value={value}
-            placeholder={placeholder}
-            required={required} 
-            ref={ref}/>
-        </>
+        <input className={`${styles.input} ${className}`} 
+        type={type} 
+        id={id} 
+        name={name}
+        onInput={onInput}
+        value={value}
+        placeholder={placeholder}
+        required={required} 
+        {...rest}
+        />
     )
 }
 

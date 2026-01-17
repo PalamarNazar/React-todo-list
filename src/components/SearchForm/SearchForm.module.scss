@@ -1,14 +1,14 @@
-.search-form {
+.form {
     position: relative;
 
-    &:has(.search-form__input:focus) {
-        .search-form__icon {
+    &:has(input:focus) {
+        .searchIcon {
             display: none;
         }
     }
 }
 
-.search-form__icon {
+.searchIcon {
     content: "";
     display: block;
     position: absolute;

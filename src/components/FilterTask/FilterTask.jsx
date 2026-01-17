@@ -1,37 +1,35 @@
 import { useContext } from 'react';
 import icon from '../../assets/images/arrow-select.svg';
-import './filters-task.css';
-import { UiContext } from '../../context/TodoContext'
-import FilterTaskOption from './FIlterTaskOption';
+import { TodoUiContext } from '../../context/TodoContext'
+import FilterTaskOption from './FilterTaskOption';
 import PurpleButton from '../purpleButton/PurpleButton';
+import styles from './FiltersTask.module.scss';
 
 const options = ['all', 'complete', 'incomplete'];
-const isOpen = 'is-open';
-const isActive = 'is-active';
 
 const FilterTasks = () => {
     const { 
         activeOption,
         openList,
         setOpenList,
-     } = useContext(UiContext);
+     } = useContext(TodoUiContext);
 
     return (
-        <div className='todo__filters filters'>
+        <div className={styles.filters}>
             
-            <PurpleButton className={`filters__button ${openList ? isActive : ''}`}
+            <PurpleButton className={`${styles.button} ${openList ? styles.isActive : ''}`}
             onClick={() => setOpenList(!openList)}
             buttonTitle="Tasks filters">
 
                 {activeOption}
-                <img className={`filters__arrow ${openList ? isActive : ''}`} 
+                <img className={`${styles.arrow} ${openList ? styles.isActive : ''}`} 
                 src={icon}
                 alt="" 
                 width="7" height="4" />
 
             </PurpleButton>
 
-            <ul className={`filters__list ${openList ? isOpen : ''}`} 
+            <ul className={`${styles.list} ${openList ? styles.isOpen : ''}`} 
                 aria-hidden={!openList} 
                 inert={!openList}>
                     
