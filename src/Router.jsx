@@ -22,11 +22,11 @@ const matchRoutes = (path, route) => {
 }
 
 export const useRouter = () => {
-    const [path, setPath] = useState(window.location.pathname.replace('/React-todo-list', ''))
+    const [path, setPath] = useState(window.location.pathname)
 
     useEffect(() => {
         const changeLocation = () => {
-            setPath(window.location.pathname.replace('/React-todo-list', ''))
+            setPath(window.location.pathname)
         }
     
         window.addEventListener('popstate', changeLocation);
