@@ -5,7 +5,7 @@ import TaskPage from "./Pages/TaskPage/TaskPage"
 
 const App = () => {
   const routes = {
-    '/React-todo-list/': ListPage,
+    '/': ListPage,
     '/tasks/:id': TaskPage,
     '*': () => <h1>Error, Page not Found...</h1>,
   }
