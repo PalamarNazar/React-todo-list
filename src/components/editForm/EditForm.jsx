@@ -15,13 +15,13 @@ const EditForm = (props) => {
             editTaskApply
         } = useContext(TodoContext);
 
-    const onInput = (event) => {
+    const onSubmit = (event) => {
         event.preventDefault();
-        editTaskApply(id)
+        editTaskApply(id, editInputRef.current.value)
     }
 
     return (
-    <form className={styles.form} onSubmit={(event) => onInput(event)}>
+    <form className={styles.form} onSubmit={onSubmit}>
         <label htmlFor="edit-field" className='visually-hidden'>Edit Title</label>
 
         <Field

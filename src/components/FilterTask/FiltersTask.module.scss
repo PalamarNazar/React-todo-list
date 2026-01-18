@@ -37,7 +37,7 @@
 .option {
     padding-inline: calc((6 / 16) * 1rem);
     transition-duration: var(--transition-duration);
-
+    
     &.isActive,
     &:hover {
         background-color: var(--color-purple-light-02);

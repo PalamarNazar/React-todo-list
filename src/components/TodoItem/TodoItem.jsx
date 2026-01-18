@@ -1,6 +1,6 @@
 import { memo, useContext } from 'react';
 import ItemControls from '../ItemControls/ItemControls'
-import { TodoContext } from '../../context/TodoContext';
+import { TodoContext, TodoUiContext } from '../../context/TodoContext';
 import EditForm from '../editForm/EditForm';
 import RouterLink from '../RouterLink/RouterLink';
 import styles from './TodoItem.module.scss';
@@ -13,8 +13,17 @@ const TodoItem = (props) => {
         editingTaskId,
     } = useContext(TodoContext);
 
+    const { 
+        animation
+    } = useContext(TodoUiContext);
+
     return (
-        <li className={styles.task}>
+        <li className={`
+        ${styles.task} 
+        ${animation.deleteAnim.includes(id) ? styles.animationDelete : ''}
+        ${animation.apperingAnim.includes(id) ? styles.animationAppear : ''}
+        ${animation.deleatingTasks.includes(id) ? styles.isDisabled : ''}
+        `}>
                 <input className={styles.checkbox} 
                 checked={isDone}
                 onChange={({target}) => toggleCheckedTask(id, target.checked)}

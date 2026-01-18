@@ -6,16 +6,16 @@ const PurpleButton = (props) => {
         children, 
         onClick,
         type = "button",
-        aria = false,
-        buttonTitle 
+        buttonTitle,
+        ...rest
     } = props
 
     return (
         <button className={`${styles.button} ${className}`} 
             onClick={onClick}
             type={type}
-            aria-label={ aria ? buttonTitle : null}
-            title={buttonTitle}>
+            title={buttonTitle}
+            {...rest}>
                 {children}
             </button>
     )

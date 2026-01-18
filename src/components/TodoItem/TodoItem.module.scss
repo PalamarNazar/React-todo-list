@@ -3,17 +3,13 @@
     width: 100%;
     display: grid;
     grid-template-columns: auto 1fr auto;
-    gap: 1rem;
+    column-gap: 1rem;
     align-items: center;
 
     &:not(:first-child) {
-        padding-top: 1rem;
-    }
-
-    &:not(:last-child) {
-        padding-bottom: 1rem;
-        border-bottom: var(--border);
+        border-top: var(--border);
         border-color: var(--color-purple-opacity-02);
+        padding-top: 1rem;
     }
 
     &:hover .controls,
@@ -21,7 +17,39 @@
         opacity: 1;
         pointer-events: auto;
     }
+
+    &.isDisabled {
+        pointer-events: none;
+    }
+
+    &.animationDelete {
+        opacity: 0;
+        transform: translateY(-75%);
+        transition-duration: var(--animation-duration);
+        pointer-events: none;
+        
+        & ~ .task {
+            transform: translateY(calc(-100% - var(--list-row-gap)));
+            transition-duration: var(--animation-duration);
+            pointer-events: none;
+        }
+    }
+
+    &.animationAppear {
+        animation: appears var(--animation-duration) forwards;
+        pointer-events: none;
+    }
+
+    @keyframes appears {
+        from {
+            opacity: 0;
+            transform: translateY(-50%);
+        }
+    }
 }
+
+
+
 .link {
     position: relative;
     

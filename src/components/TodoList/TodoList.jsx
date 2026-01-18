@@ -6,18 +6,27 @@ import styles from './TodoList.module.scss';
 
 const TodoList = () => {
 
-    const { tasks, filteredTasks } = useContext(TodoContext);
+    const { tasks, filteredTasks, isLoading } = useContext(TodoContext);
     
     const hasTasks = tasks.length > 0;
     const isEmptyFilteredTasks = filteredTasks?.length === 0;
 
+    if (isLoading) {
+        return (
+            <div className={`${styles.emptyMessage} h3`}>
+                <p>Loading your tasks...</p>
+            </div>
+        )
+    }
+
     if(!hasTasks) {
         return (
             <div className={`${styles.emptyMessage} h3`}>
-                <p>{`You don't have any tasks yet.`}</p>
+                <p>You don't have any tasks yet.</p>
             </div>
         )
     }  
+
     
     if (hasTasks && isEmptyFilteredTasks) {
         return (
@@ -35,7 +44,7 @@ const TodoList = () => {
     }
 
     return (
-        <ul className={styles.list}>
+        <ul className={`${styles.list}`}>
             {(filteredTasks ?? tasks).map((task) => (
                 <TodoItem key={task.id} {...task} />
             ))}

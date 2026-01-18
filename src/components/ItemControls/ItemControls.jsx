@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { TodoContext } from '../../context/TodoContext';
+import { TodoContext, TodoUiContext } from '../../context/TodoContext';
 import styles from './ItemControls.module.scss';
 
 const ItemControls = (props) => {
@@ -7,12 +7,17 @@ const ItemControls = (props) => {
 
     const { deleteTask, startEditTask } = useContext(TodoContext);
 
+    const { 
+        animation,
+    } = useContext(TodoUiContext);
+
     return (
         <div className={className}>
             <button className={`${styles.buttons} ${styles.buttonEdit} button-reset`} 
                 type="button"
                 aria-label="Edit"
                 title="Edit"
+                disabled={animation.deleatingTasks.includes(taskId)}
                 onClick={() => startEditTask(taskId)}>
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M7.17272 3.49106L0.5 10.1637V13.5H3.83636L10.5091 6.82736M7.17272 3.49106L9.5654 1.09837L9.5669 1.09695C9.8962 0.767585 10.0612 0.602613 10.2514 0.540824C10.4189 0.486392 10.5993 0.486392 10.7669 0.540824C10.9569 0.602571 11.1217 0.767352 11.4506 1.09625L12.9018 2.54738C13.2321 2.87769 13.3973 3.04292 13.4592 3.23337C13.5136 3.40088 13.5136 3.58133 13.4592 3.74885C13.3974 3.93916 13.2324 4.10414 12.9025 4.43398L12.9018 4.43468L10.5091 6.82736M7.17272 3.49106L10.5091 6.82736" stroke="#CDCDCD" strokeLinecap="round" strokeLinejoin="round" />
@@ -22,6 +27,7 @@ const ItemControls = (props) => {
                 type="button"
                 aria-label="Deleate"
                 title="Deleate"
+                disabled={animation.deleatingTasks.includes(taskId)}
                 onClick={() => deleteTask(taskId)}
                 >
                     <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">

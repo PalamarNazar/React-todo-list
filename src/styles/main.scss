@@ -1,8 +1,8 @@
-@import './normalize.scss';
-@import './variables.scss';
-@import './fonts.scss';
-@import './utils.scss';
-@import './globals.scss';
+@use './normalize.scss';
+@use './variables.scss';
+@use './fonts.scss';
+@use './utils.scss';
+@use './globals.scss';
 
-@import './blocks/button-reset.scss';
-@import './blocks/header.scss';
+@use './blocks/button-reset.scss';
+@use './blocks/header.scss';

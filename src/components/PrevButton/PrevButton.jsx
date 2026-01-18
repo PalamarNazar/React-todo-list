@@ -7,7 +7,7 @@ const PrevButton = () => {
             <PurpleButton className={styles.button} 
             type="button" 
             buttonTitle="Previous Page"
-            aria={true}
+            aria-label='previous page'
             onClick={() => window.history.back()}>
                 <img src={iconBackPage} alt="Return to previous page" />
             </PurpleButton>

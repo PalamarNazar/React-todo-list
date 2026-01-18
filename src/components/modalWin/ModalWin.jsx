@@ -11,13 +11,14 @@ const ModalWin = () => {
     useFocusTrap(modal, isOpenModalWin, setIsOpenModalWin);
     
     if (!isOpenModalWin) return null;
-    
+
     return (
-        <div className={`${styles.wrapper} ${isOpenModalWin ? styles.isOpen : ''}`}>
-            <div className={styles.modal} id='modal' 
+        <div className={styles.wrapper}
+            id='modal' 
             role='dialog'
             aria-modal={true}
-            aria-labelledby='modal-title'
+            aria-labelledby='modal-title'>
+            <div className={styles.modal} 
             ref={modal}>
                 <h2 className={styles.modalTitle} id='modal-title'>New Note</h2>
                 <AddTaskForm />  

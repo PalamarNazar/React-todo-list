@@ -1,8 +1,8 @@
 import { createContext } from "react";
-import { useTodo } from "../hooks/useTodo";
 import { useTheme } from "../hooks/useTheme"
+import useUi from "../hooks/useUi";
 
-export const UiContext = createContext({})
+export const UiContext = createContext({});
 
 export const UiProvider = ({children}) => {
     const {theme, setTheme} = useTheme()
@@ -10,17 +10,17 @@ export const UiProvider = ({children}) => {
     const {
         isOpenModalWin,
         setIsOpenModalWin,
-        errorMessage, 
-        setErrorMessage,
-    } = useTodo()
+        openList,
+        setOpenList,
+    } = useUi()
 
     return (
         <UiContext.Provider 
         value={{
             isOpenModalWin,
             setIsOpenModalWin,
-            errorMessage, 
-            setErrorMessage,
+            openList,
+            setOpenList,
             theme, 
             setTheme
         }}>

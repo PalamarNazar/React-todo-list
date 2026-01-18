@@ -12,8 +12,8 @@ const focusabledElements = `
 export const useFocusTrap = (container, isOpen, setIsOpen) => {
     useEffect(() => {
         if (!container?.current || !isOpen) return;
-
         const elements = Array.from(container.current.querySelectorAll(focusabledElements));
+
 
         if(elements.length === 0) return;
         const onKeyDown = (event) => {
@@ -35,6 +35,7 @@ export const useFocusTrap = (container, isOpen, setIsOpen) => {
             }
             
         }
+
 
         if (isOpen) {
             elements[0].focus()

@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { createContext } from "react";
 import { useTodo } from "../hooks/useTodo";
 
@@ -28,36 +29,66 @@ export const TodoProvider = ({children}) => {
         setOpenList,
         editInputRef,
         editTaskApply,
+        animation,
+        isLoading
     } = useTodo();
 
+    const TodoValue =  useMemo(() => ({
+        tasks,
+        toggleCheckedTask,
+        setTasks,
+        newTaskTitle,
+        setNewTaskTitle,
+        filteredTasks,
+        addTasks,
+        deleteTask,
+        editingTaskTitle, 
+        startEditTask,
+        setEditingTaskTitle,
+        editingTaskId, 
+        setEditingTaskId,
+        editInputRef,
+        editTaskApply,
+        isLoading
+    }), [
+        tasks,
+        toggleCheckedTask,
+        setTasks,
+        newTaskTitle,
+        setNewTaskTitle,
+        filteredTasks,
+        addTasks,
+        deleteTask,
+        editingTaskTitle, 
+        startEditTask,
+        setEditingTaskTitle,
+        editingTaskId, 
+        setEditingTaskId,
+        editInputRef,
+        editTaskApply,
+        isLoading
+    ])
+    const TodoUiValue =  useMemo(() => ({
+        activeOption,
+        openList,
+        animation,
+        searchTaskTitle,
+        setSearchTaskTitle,
+        setActiveOption,
+        setOpenList
+    }), [
+        activeOption,
+        openList,
+        animation,
+        searchTaskTitle,
+        setSearchTaskTitle,
+        setActiveOption,
+        setOpenList,
+    ])
+
     return (
-        <TodoContext.Provider
-        value={{
-                tasks,
-                toggleCheckedTask,
-                setTasks,
-                newTaskTitle,
-                setNewTaskTitle,
-                filteredTasks,
-                addTasks,
-                deleteTask,
-                startEditTask,
-                editingTaskTitle, 
-                setEditingTaskTitle,
-                editingTaskId, 
-                setEditingTaskId,
-                editInputRef,
-                editTaskApply,
-        }}>
-            <TodoUiContext.Provider 
-            value={{
-                searchTaskTitle,
-                setSearchTaskTitle,
-                activeOption,
-                setActiveOption,
-                openList,
-                setOpenList,
-            }}>
+        <TodoContext.Provider value={TodoValue}>
+            <TodoUiContext.Provider value={TodoUiValue}>
                 {children}
             </TodoUiContext.Provider>
         </TodoContext.Provider>

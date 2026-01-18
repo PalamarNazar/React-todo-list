@@ -25,8 +25,12 @@
     --box-shadow-purple: 0 0 4px 0 var(--color-purple);
     --transition-duration: 0.2s;
 
+    --animation-duration: calc(var(--transition-duration) * 2);
+
     --container-width: calc((750 / 16) * 1rem);
     --container-padding-x: 1.5rem;
+
+    --list-row-gap: 1rem;
 
     --font-family-base: 'Kanit';
     --font-family-accent: 'Inter 18pt';

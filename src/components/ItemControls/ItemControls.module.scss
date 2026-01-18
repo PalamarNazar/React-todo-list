@@ -1,6 +1,21 @@
 .buttons {
+    position: relative;
     display: flex;
     color: var(--color-gray-03);
+    
+    &:disabled:hover,
+    &:disabled {
+        color: var(--color-gray) !important;
+        pointer-events: none;
+        transition-duration: var(--transition-duration);
+    }
+
+    &::before {
+        content: "";
+        position: absolute;
+        width: 1.5rem;
+        height: 1.5rem;
+    }
 }
 
 .buttonEdit {

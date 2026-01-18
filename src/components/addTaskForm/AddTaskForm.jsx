@@ -18,10 +18,15 @@ const AddTaskForm = () => {
 
     const onSubmit = (event) => {
             event.preventDefault();
-            addTasks()
+            addTasks(newTaskTitle)
             setIsOpenModalWin(false)
+            setNewTaskTitle('');
     }
 
+    const onReset = (event) => {
+        event.preventDefault()
+        setIsOpenModalWin(false)
+    }
     return (
         <form className={styles.form} onSubmit={onSubmit}>
             <label htmlFor="add-task" className="visually-hidden">new note</label>
@@ -38,7 +43,7 @@ const AddTaskForm = () => {
 
                 <PurpleButton className={`${styles.formButton} ${styles.buttonReset}`}
                 type='reset'
-                onClick={() => setIsOpenModalWin(false)}>
+                onClick={onReset}>
                 Reset
                 </PurpleButton>
 

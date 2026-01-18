@@ -4,15 +4,19 @@ import { TodoUiContext } from '../../context/TodoContext'
 import FilterTaskOption from './FilterTaskOption';
 import PurpleButton from '../purpleButton/PurpleButton';
 import styles from './FiltersTask.module.scss';
+import { UiContext } from '../../context/UiContext';
 
 const options = ['all', 'complete', 'incomplete'];
 
 const FilterTasks = () => {
     const { 
         activeOption,
+     } = useContext(TodoUiContext);
+
+    const { 
         openList,
         setOpenList,
-     } = useContext(TodoUiContext);
+     } = useContext(UiContext);
 
     return (
         <div className={styles.filters}>
