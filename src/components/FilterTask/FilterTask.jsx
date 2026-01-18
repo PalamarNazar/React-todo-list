@@ -3,12 +3,13 @@ import icon from '../../assets/images/arrow-select.svg';
 import { TodoUiContext } from '../../context/TodoContext'
 import FilterTaskOption from './FilterTaskOption';
 import PurpleButton from '../purpleButton/PurpleButton';
-import styles from './FiltersTask.module.scss';
 import { UiContext } from '../../context/UiContext';
+import styles from './FiltersTask.module.scss';
 
 const options = ['all', 'complete', 'incomplete'];
 
 const FilterTasks = () => {
+
     const { 
         activeOption,
      } = useContext(TodoUiContext);
