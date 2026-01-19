@@ -14,16 +14,16 @@ const TaskPage = (props) => {
     const [hasError, setHasError] = useState(false);
 
     useEffect(() => {
-        taskAPI.getById(taskId).then((taskData) => {
-            setTask(taskData);
-            setHasError(false)
-        }).catch(() => {
+        const taskData = taskAPI.getById(taskId)
+        
+        if (!taskData) {
             setHasError(true)
-        }).finally(() => {
-            setLoading(false)
-        })
-    }, [taskId])
+        } else {
+            setTask(taskData);
+        }
 
+        setLoading(false)
+    }, [taskId])
 
     if(loading) {
         return (

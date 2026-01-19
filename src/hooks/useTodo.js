@@ -50,7 +50,6 @@ export const useTodo = () => {
     const [isLoading, setIsLoading] = useState(true);
     const {addAnimation, removeAnimation, animation} = useUi()
     
-
     const editInputRef = useRef(null);
     
     const addTasks = useCallback((title) => {
@@ -58,57 +57,60 @@ export const useTodo = () => {
 
         
         const newTask = {
+            id: crypto.randomUUID(),
             title,
             isDone: false,
         }
         
-        taskAPI.add(newTask)
-        .then((data) => {
-            dispatch({ type: 'ADD', tasks: data,});
-            addAnimation('apperingAnim', data.id)
+        const addedTask = taskAPI.add(newTask);
+
+        if (addedTask) {
+            dispatch({ type: 'ADD', tasks: addedTask,});
+            addAnimation('apperingAnim', addedTask.id)
             setTimeout(() => {
-                removeAnimation('apperingAnim', data.id)
+                removeAnimation('apperingAnim', addedTask.id)
             }, 400);
-        }).catch((data) => {
-            removeAnimation('apperingAnim', data.id)
-        })
+        }
+
+        removeAnimation('apperingAnim', addedTask.id)
+
     }, [addAnimation, removeAnimation])
 
     useEffect(() => {
-        taskAPI.getAll().then((data) => {
-            dispatch({ type: 'SET_ALL', tasks: data,});
-        }).catch(() => {
+        const data = taskAPI.getAll()
+
+        if (data) {
             setIsLoading(false);
-        }).finally(() => {
-            setIsLoading(false)
-        })
+            dispatch({ type: 'SET_ALL', tasks: data,});
+        }
     }, [])
 
     const deleteTask = useCallback((taskId) => {
         if (animation.deleatingTasks.includes(taskId)) return;
         addAnimation('deleatingTasks', taskId);
 
-        taskAPI.delete(taskId).then(() => {
+        const deleatingTaskId = taskAPI.delete(taskId)
+
             addAnimation('deleteAnim', taskId);
 
-            setTimeout(() => {
-                dispatch({ type: 'DELETE', id: taskId,})
+            if (deleatingTaskId) {
+                setTimeout(() => {
+                    dispatch({ type: 'DELETE', id: taskId,})
+                    removeAnimation('deleatingTasks', taskId)
+                    removeAnimation('deleteAnim', taskId)
+                }, 400)
+            } else {
                 removeAnimation('deleatingTasks', taskId)
                 removeAnimation('deleteAnim', taskId)
-            }, 400)
-        }).catch(() => {
-            removeAnimation('deleatingTasks', taskId)
-            removeAnimation('deleteAnim', taskId)
-        })
+            }
     }, [animation.deleatingTasks, addAnimation, removeAnimation])
 
     const startEditTask = useCallback((id) => {
-        tasks.forEach((task) => {
-            if (task.id === id) {
-                setEditingTaskTitle(task.title)
-                setEditingTaskId(task.id)
-            }
-        })
+        const editingTask = tasks.find((task) => task.id === id)
+
+        if (!editingTask) return;
+        setEditingTaskTitle(editingTask.title)
+        setEditingTaskId(editingTask.id)
     }, [tasks])
 
     useEffect(() => {
@@ -146,10 +148,11 @@ export const useTodo = () => {
 
         if (title.length === 0) return;
 
-        taskAPI.editTask(id, title).then(() => {
-            dispatch({ type: 'EDIT_TITLE', id, title})
-        })
-        
+        const editingTaskId = taskAPI.editTask(id, title)
+
+        if (!editingTaskId) return;
+
+        dispatch({ type: 'EDIT_TITLE', id, title})
         setEditingTaskId(null)
     }, [])
     
@@ -172,11 +175,12 @@ export const useTodo = () => {
 
     }, [tasks, searchTaskTitle, activeOption])
 
-    const toggleCheckedTask = useCallback(
-        (id, isDone) => {
-        taskAPI.toggleComplete(id, isDone).then(() => {
-            dispatch({ type: 'TOGGLE_COMPLETE', id, isDone})
-        })}, [])
+    const toggleCheckedTask = useCallback((id, isDone) => {
+        const isToggleTaskid = taskAPI.toggleComplete(id, isDone)
+
+        if (!isToggleTaskid) return;
+        dispatch({ type: 'TOGGLE_COMPLETE', id, isDone})
+    }, [])
 
     return {
         tasks,
@@ -198,6 +202,6 @@ export const useTodo = () => {
         editInputRef,
         editTaskApply,
         isLoading,
-        animation
+        animation,
     }
 }

@@ -10,6 +10,8 @@ const useUi = () => {
     })
 
     const addAnimation = useCallback((key, taskId) => {
+        if (!key && !taskId) return;
+
         setAnimation(prevAnim => (
             {...prevAnim, [key]: prevAnim[key].includes(taskId) 
                 ? prevAnim[key]
@@ -18,6 +20,8 @@ const useUi = () => {
     }, [])
 
     const removeAnimation = useCallback((key, taskId) => {
+        if (!key && !taskId) return;
+        
             setAnimation(prevAnim => (
                 {...prevAnim, [key]: prevAnim[key].filter(id => id !== taskId)}
             ))

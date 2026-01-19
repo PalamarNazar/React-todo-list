@@ -33,7 +33,7 @@ const TodoItem = (props) => {
                     {editingTaskId === id 
                     ? 
                     <EditForm id={id}/>
-                    : <RouterLink to={`/tasks/${id}`} className={styles.link} aria-label="Task details">
+                    : <RouterLink to={`#/tasks/${id}`} className={styles.link} aria-label="Task details">
                         <span className={`${styles.title} h3`} aria-hidden="true">{title}</span>
                     </RouterLink>}
             

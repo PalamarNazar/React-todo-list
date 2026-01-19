@@ -1,4 +1,4 @@
-import AddTaskForm from '../AddTaskForm/AddTaskForm.jsx';
+import AddTaskForm from "../AddTaskForm/AddTaskForm"
 import { useContext, useRef } from 'react';
 import { UiContext } from '../../context/UiContext.jsx';
 import { useFocusTrap } from '../../hooks/useFocusTrap.js';
