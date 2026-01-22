@@ -1,6 +1,6 @@
 import { useContext } from 'react';
-import { TodoUiContext } from '../../context/TodoContext';
-import Field from '../field/Field';
+import { TodoUiContext } from '../../context/TodoContext.js';
+import Field from '../Field/Field.js';
 import styles from './SearchForm.module.scss';
 
 const SearchForm = (props) => {

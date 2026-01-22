@@ -1,7 +1,7 @@
 import icon from '../../assets/images/plus.svg'
 import { useContext } from 'react';
-import { UiContext } from '../../context/UiContext.jsx';
-import PurpleButton from '../purpleButton/PurpleButton';
+import { UiContext } from '../../context/UiContext.js';
+import PurpleButton from '../PurpleButton/PurpleButton.js';
 import styles from './AddTask.module.scss';
 
 

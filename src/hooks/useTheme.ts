@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useLocalStorage } from './useLocalStorage';
+import { useLocalStorage } from './useLocalStorage.js';
 
 const ThemeKey = 'theme';
 const SelectorDarkTheme = 'dark-theme';

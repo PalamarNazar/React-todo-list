@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { TodoContext, TodoUiContext } from '../../context/TodoContext';
+import { TodoContext, TodoUiContext } from '../../context/TodoContext.js';
 import styles from './ItemControls.module.scss';
 
 const ItemControls = (props) => {

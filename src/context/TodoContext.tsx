@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { createContext } from "react";
-import { useTodo } from "../hooks/useTodo";
+import { useTodo } from "../hooks/useTodo.ts";
 
 export const TodoContext = createContext({});
 export const TodoUiContext = createContext({})
@@ -30,7 +30,7 @@ export const TodoProvider = ({children}) => {
         editInputRef,
         editTaskApply,
         animation,
-        isLoading
+        isLoading,
     } = useTodo();
 
     const TodoValue =  useMemo(() => ({
@@ -49,7 +49,7 @@ export const TodoProvider = ({children}) => {
         setEditingTaskId,
         editInputRef,
         editTaskApply,
-        isLoading
+        isLoading,
     }), [
         tasks,
         toggleCheckedTask,
@@ -66,7 +66,7 @@ export const TodoProvider = ({children}) => {
         setEditingTaskId,
         editInputRef,
         editTaskApply,
-        isLoading
+        isLoading,
     ])
     const TodoUiValue =  useMemo(() => ({
         activeOption,

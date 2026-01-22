@@ -1,9 +1,9 @@
 import { useContext } from 'react';
 import icon from '../../assets/images/arrow-select.svg';
-import { TodoUiContext } from '../../context/TodoContext'
-import FilterTaskOption from './FilterTaskOption';
-import PurpleButton from '../purpleButton/PurpleButton';
-import { UiContext } from '../../context/UiContext';
+import { TodoUiContext } from '../../context/TodoContext.js'
+import FilterTaskOption from './FilterTaskOption.js';
+import PurpleButton from '../PurpleButton/PurpleButton.js';
+import { UiContext } from '../../context/UiContext.js';
 import styles from './FiltersTask.module.scss';
 
 const options = ['all', 'complete', 'incomplete'];

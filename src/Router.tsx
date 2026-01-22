@@ -1,5 +1,13 @@
 import { useEffect, useState } from "react";
 
+const BASE = "/React-todo-list";
+
+const getPathName = () => {
+    return window.location.hash 
+    ? window.location.hash.replace("#", '') || '/'
+    : window.location.pathname.replace(BASE, '')
+}
+
 const matchRoutes = (path, route) => {
     const pathName = path.split('/');
     const routeName = route.split('/');
@@ -22,11 +30,11 @@ const matchRoutes = (path, route) => {
 }
 
 export const useRouter = () => {
-    const [path, setPath] = useState(window.location.pathname)
+    const [path, setPath] = useState(getPathName())
 
     useEffect(() => {
         const changeLocation = () => {
-            setPath(window.location.pathname)
+            setPath(getPathName())
         }
     
         window.addEventListener('popstate', changeLocation);

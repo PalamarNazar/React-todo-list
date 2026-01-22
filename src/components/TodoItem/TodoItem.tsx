@@ -1,8 +1,8 @@
 import { memo, useContext } from 'react';
-import ItemControls from '../ItemControls/ItemControls'
-import { TodoContext, TodoUiContext } from '../../context/TodoContext';
-import EditForm from '../editForm/EditForm';
-import RouterLink from '../RouterLink/RouterLink';
+import ItemControls from '../ItemControls/ItemControls.js'
+import { TodoContext, TodoUiContext } from '../../context/TodoContext.js';
+import EditForm from '../editForm/EditForm.js';
+import RouterLink from '../RouterLink/RouterLink.js';
 import styles from './TodoItem.module.scss';
 
 const TodoItem = (props) => {
@@ -33,7 +33,7 @@ const TodoItem = (props) => {
                     {editingTaskId === id 
                     ? 
                     <EditForm id={id}/>
-                    : <RouterLink to={`/tasks/${id}`} className={styles.link} aria-label="Task details">
+                    : <RouterLink to={`#/tasks/${id}`} className={styles.link} aria-label="Task details">
                         <span className={`${styles.title} h3`} aria-hidden="true">{title}</span>
                     </RouterLink>}
             

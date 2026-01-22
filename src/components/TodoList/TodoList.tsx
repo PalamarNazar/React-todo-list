@@ -1,6 +1,6 @@
 import { memo, useContext } from "react";
-import TodoItem from "../TodoItem/TodoItem";
-import { TodoContext } from "../../context/TodoContext";
+import TodoItem from "../TodoItem/TodoItem.js";
+import { TodoContext } from "../../context/TodoContext.js";
 import detectiveDarkImage from '../../assets/images/Detective-dark.svg'
 import styles from './TodoList.module.scss';
 

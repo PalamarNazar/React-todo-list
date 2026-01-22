@@ -1,15 +1,15 @@
-import { useContext } from 'react';
-import { TodoContext } from '../../context/TodoContext';
-import { UiContext } from "../../context/UiContext.jsx"
-import Field from '../Field/Field.jsx';
-import PurpleButton from '../purpleButton/PurpleButton';
+import { useContext, useEffect } from 'react';
+import { TodoContext } from '../../context/TodoContext.js';
+import { UiContext } from "../../context/UiContext.js"
+import Field from '../Field/Field.js';
+import PurpleButton from '../PurpleButton/PurpleButton.js';
 import styles from './AddTaskForm.module.scss';
 
 const AddTaskForm = () => {
     const {
         setNewTaskTitle,
         newTaskTitle,
-        addTasks
+        addTasks,
     } = useContext(TodoContext)
 
     const {
@@ -48,7 +48,8 @@ const AddTaskForm = () => {
                 </PurpleButton>
 
                 <PurpleButton className={styles.formButton}
-                type='submit'>
+                type='submit'
+                disabled={newTaskTitle.trim().length === 0}>
                 Apply
                 </PurpleButton>
 

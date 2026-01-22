@@ -1,4 +1,4 @@
-import PurpleButton from "../purpleButton/PurpleButton";
+import PurpleButton from "../PurpleButton/PurpleButton.js";
 import iconBackPage from "../../assets/images/prev-page.svg";
 import styles from "./PrevButton.module.scss"
 

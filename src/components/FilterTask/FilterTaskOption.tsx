@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { TodoUiContext } from "../../context/TodoContext";
+import { TodoUiContext } from "../../context/TodoContext.js";
 import styles from './FiltersTask.module.scss';
 
 const FilterTaskOption = (props) => {

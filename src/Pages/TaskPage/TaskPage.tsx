@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import taskAPI from "../../api/tasksAPI.js";
-import PrevButton from "../../components/PrevButton/PrevButton.jsx";
+import PrevButton from "../../components/PrevButton/PrevButton.js";
 import styles from './TaskPage.module.scss'
 
 
@@ -14,16 +14,16 @@ const TaskPage = (props) => {
     const [hasError, setHasError] = useState(false);
 
     useEffect(() => {
-        taskAPI.getById(taskId).then((taskData) => {
-            setTask(taskData);
-            setHasError(false)
-        }).catch(() => {
+        const taskData = taskAPI.getById(taskId)
+        
+        if (!taskData) {
             setHasError(true)
-        }).finally(() => {
-            setLoading(false)
-        })
-    }, [taskId])
+        } else {
+            setTask(taskData);
+        }
 
+        setLoading(false)
+    }, [taskId])
 
     if(loading) {
         return (

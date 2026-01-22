@@ -1,7 +1,7 @@
 import { useContext } from "react";
-import { TodoContext } from "../../context/TodoContext";
-import Field from "../field/Field";
-import PurpleButton from "../purpleButton/PurpleButton";
+import { TodoContext } from "../../context/TodoContext.js";
+import Field from "../Field/Field.js";
+import PurpleButton from "../PurpleButton/PurpleButton.js";
 import styles from './EditForm.module.scss'
 
 const EditForm = (props) => {

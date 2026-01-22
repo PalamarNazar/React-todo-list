@@ -1,8 +1,8 @@
-import SearchForm from "../SearchForm/SearchForm";
-import FilterTasks from "../FilterTask/FilterTask";
-import ThemeChanger from "../ThemeChanger/ThemeChanger";
-import TodoList from "../TodoList/TodoList";
-import AddTask from "../addTask/AddTask"
+import SearchForm from "../SearchForm/SearchForm.js";
+import FilterTasks from "../FilterTask/FilterTask.js";
+import ThemeChanger from "../ThemeChanger/ThemeChanger.js";
+import TodoList from "../TodoList/TodoList.js";
+import AddTask from "../AddTask/AddTask.js"
 import styles from './Todo.module.scss'
 
 const Todo = () => {

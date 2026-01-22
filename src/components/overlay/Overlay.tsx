@@ -1,5 +1,5 @@
 import { memo, useContext } from 'react';
-import { UiContext } from '../../context/UiContext.jsx';
+import { UiContext } from '../../context/UiContext.js';
 import styles from './Overlay.module.scss';
 
 const Overlay = () => {

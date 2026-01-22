@@ -1,8 +1,8 @@
 import { useContext } from 'react';
-import { UiContext } from '../../context/UiContext.jsx'
+import { UiContext } from '../../context/UiContext.js'
 import darkIcon from '../../assets/images/dark-theme.svg'
 import lightIcon from '../../assets/images/light-theme.svg'
-import PurpleButton from '../purpleButton/PurpleButton.jsx';
+import PurpleButton from '../purpleButton/PurpleButton.js';
 import styles from './ThemeChanger.module.scss';
 
 const ThemeChanger = () => {

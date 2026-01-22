@@ -1,10 +1,10 @@
 import { createContext } from "react";
-import { useTheme } from "../hooks/useTheme"
-import useUi from "../hooks/useUi";
+import { useTheme } from "../hooks/useTheme.ts"
+import useUi from "../hooks/useUi.ts";
 
 export const UiContext = createContext({});
 
-export const UiProvider = ({children}) => {
+export const UiProvider = ({children}: any) => {
     const {theme, setTheme} = useTheme()
 
     const {

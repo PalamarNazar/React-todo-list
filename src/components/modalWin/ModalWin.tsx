@@ -1,7 +1,7 @@
-import AddTaskForm from '../addTaskForm/AddTaskForm.jsx';
+import AddTaskForm from "../AddTaskForm/AddTaskForm.jsx"
 import { useContext, useRef } from 'react';
-import { UiContext } from '../../context/UiContext.jsx';
-import { useFocusTrap } from '../../hooks/useFocusTrap.js';
+import { UiContext } from '../../context/UiContext.tsx';
+import { useFocusTrap } from '../../hooks/useFocusTrap.ts';
 import styles from './ModalWin.module.scss';
 
 const ModalWin = () => {
