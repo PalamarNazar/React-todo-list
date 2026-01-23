@@ -1,6 +1,9 @@
+import type { InputHTMLAttributes } from 'react';
 import styles from './Field.module.scss'
 
-const Field = (props) => {
+type FieldProps = InputHTMLAttributes<HTMLInputElement>;
+
+const Field = (props: FieldProps) => {
     const { 
         onInput, 
         id,

@@ -1,21 +1,22 @@
-import { memo, useContext } from 'react';
-import ItemControls from '../ItemControls/ItemControls.js'
-import { TodoContext, TodoUiContext } from '../../context/TodoContext.js';
-import EditForm from '../editForm/EditForm.js';
-import RouterLink from '../RouterLink/RouterLink.js';
+import { memo } from 'react';
+import ItemControls from '../ItemControls/ItemControls.jsx'
+import { useTodoContext, useTodoUiContext } from '../../context/TodoContext.jsx';
+import EditForm from '../EditForm/EditForm.jsx';
+import RouterLink from '../RouterLink/RouterLink.jsx';
+import type { Task } from "../../utils.js";
 import styles from './TodoItem.module.scss';
 
-const TodoItem = (props) => {
+const TodoItem = (props: Task) => {
     const { id, title, isDone } = props
 
     const { 
         toggleCheckedTask,  
         editingTaskId,
-    } = useContext(TodoContext);
+    } = useTodoContext()
 
     const { 
         animation
-    } = useContext(TodoUiContext);
+    } = useTodoUiContext()
 
     return (
         <li className={`
@@ -37,7 +38,7 @@ const TodoItem = (props) => {
                         <span className={`${styles.title} h3`} aria-hidden="true">{title}</span>
                     </RouterLink>}
             
-            <ItemControls className={styles.controls} taskId={id} />
+            <ItemControls className={styles.controls ?? ""} taskId={id} />
         </li>
     )
 }

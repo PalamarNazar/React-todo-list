@@ -1,8 +1,17 @@
 import { useEffect, useState, useMemo, useRef, useCallback, useReducer } from "react";
+import {  type Task, type Tasks, type Id , type isDone, type Title } from "../utils.js";
 import taskAPI from "../api/tasksAPI.js";
 import useUi from "./useUi.js";
 
-const tasksReducer = (state, action) => {
+type Action = {type: 'SET_ALL', tasks: Tasks}
+    | {type: 'ADD', tasks: Task}
+    | {type: 'TOGGLE_COMPLETE', id: Id, isDone: isDone}
+    | {type: 'DELETE', id: Id}
+    | {type: 'EDIT_TITLE', id: Id, title: Title}
+
+type TaskReducer = (state: Tasks, action: Action) => Tasks;
+
+const tasksReducer: TaskReducer = (state, action) => {
     switch (action.type) {
         case 'SET_ALL': {
             return Array.isArray(action.tasks) ? action.tasks : state
@@ -37,22 +46,25 @@ const filterdOptions = {
         all: 'all',
         complete: 'complete',
         incomplete:'incomplete',
-}
+} as const
+
+type FilterOption = keyof typeof filterdOptions  
+
 
 export const useTodo = () => {
     const [tasks, dispatch] = useReducer(tasksReducer, []);
     
-    const [activeOption, setActiveOption] = useState('all');
+    const [activeOption, setActiveOption] = useState<FilterOption>('all');
     const [searchTaskTitle, setSearchTaskTitle] = useState('');
     const [newTaskTitle, setNewTaskTitle] = useState('');
     const [editingTaskTitle, setEditingTaskTitle] = useState('');
-    const [editingTaskId, setEditingTaskId] = useState(null);
+    const [editingTaskId, setEditingTaskId] = useState<string | null>(null);
     const [isLoading, setIsLoading] = useState(true);
     const {addAnimation, removeAnimation, animation} = useUi()
     
-    const editInputRef = useRef(null);
+    const editInputRef = useRef<HTMLInputElement>(null);
     
-    const addTasks = useCallback((title) => {
+    const addTasks = useCallback((title: Title) => {
         if (title.trim().length === 0) return;
 
         
@@ -65,15 +77,12 @@ export const useTodo = () => {
         const addedTask = taskAPI.add(newTask);
 
         if (addedTask) {
-            dispatch({ type: 'ADD', tasks: addedTask,});
+            dispatch({ type: 'ADD', tasks: addedTask});
             addAnimation('apperingAnim', addedTask.id)
             setTimeout(() => {
                 removeAnimation('apperingAnim', addedTask.id)
             }, 400);
         }
-
-        removeAnimation('apperingAnim', addedTask.id)
-
     }, [addAnimation, removeAnimation])
 
     useEffect(() => {
@@ -85,7 +94,7 @@ export const useTodo = () => {
         }
     }, [])
 
-    const deleteTask = useCallback((taskId) => {
+    const deleteTask = useCallback((taskId: Id) => {
         if (animation.deleatingTasks.includes(taskId)) return;
         addAnimation('deleatingTasks', taskId);
 
@@ -105,26 +114,27 @@ export const useTodo = () => {
             }
     }, [animation.deleatingTasks, addAnimation, removeAnimation])
 
-    const startEditTask = useCallback((id) => {
+    const startEditTask = useCallback((id: Id) => {
         const editingTask = tasks.find((task) => task.id === id)
 
         if (!editingTask) return;
+
         setEditingTaskTitle(editingTask.title)
         setEditingTaskId(editingTask.id)
     }, [tasks])
 
     useEffect(() => {
-        if(!editingTaskId) return; 
+        if(!editingTaskId || !editInputRef.current) return; 
         editInputRef.current.focus()
 
-        const onDblClick = (event) => {
+        const onDblClick = (event: Event) => {
             const clickEditField = event.target === editInputRef.current
 
             if (clickEditField) return; 
             setEditingTaskId(null)
         }
 
-        const onKeyDown = (event) => {
+        const onKeyDown = (event: KeyboardEvent) => {
             const { code } = event
 
             if (code === 'Escape') {
@@ -143,7 +153,7 @@ export const useTodo = () => {
         }
     }, [editingTaskId])
 
-    const editTaskApply = useCallback((id, newTitle) => {
+    const editTaskApply = useCallback((id: Id, newTitle: Title) => {
         const title = newTitle.trim()
 
         if (title.length === 0) return;
@@ -175,7 +185,7 @@ export const useTodo = () => {
 
     }, [tasks, searchTaskTitle, activeOption])
 
-    const toggleCheckedTask = useCallback((id, isDone) => {
+    const toggleCheckedTask = useCallback((id: Id, isDone: isDone) => {
         const isToggleTaskid = taskAPI.toggleComplete(id, isDone)
 
         if (!isToggleTaskid) return;

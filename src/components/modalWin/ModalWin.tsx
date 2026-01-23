@@ -1,15 +1,21 @@
 import AddTaskForm from "../AddTaskForm/AddTaskForm.jsx"
-import { useContext, useRef } from 'react';
-import { UiContext } from '../../context/UiContext.tsx';
-import { useFocusTrap } from '../../hooks/useFocusTrap.ts';
+import { useRef } from 'react';
+import { useUiContext } from '../../context/UiContext.jsx';
+import { useTodoContext } from "../../context/TodoContext.js";
+import { useFocusTrap } from '../../hooks/useFocusTrap.js';
 import styles from './ModalWin.module.scss';
 
 const ModalWin = () => {
-    const { isOpenModalWin, setIsOpenModalWin } = useContext(UiContext);
+    const { isOpenModalWin, setIsOpenModalWin } = useUiContext()
+
+    const {
+        newTaskTitle,
+    } = useTodoContext()
 
     const modal = useRef(null);
-    useFocusTrap(modal, isOpenModalWin, setIsOpenModalWin);
-    
+
+    useFocusTrap(modal, isOpenModalWin, setIsOpenModalWin, newTaskTitle);
+
     if (!isOpenModalWin) return null;
 
     return (

@@ -1,12 +1,11 @@
 import icon from '../../assets/images/plus.svg'
-import { useContext } from 'react';
-import { UiContext } from '../../context/UiContext.js';
+import { useUiContext } from '../../context/UiContext.js';
 import PurpleButton from '../PurpleButton/PurpleButton.js';
 import styles from './AddTask.module.scss';
 
 
 const AddTask = () => {
-    const { setIsOpenModalWin } = useContext(UiContext)
+    const { setIsOpenModalWin } = useUiContext()
 
     return (
         <PurpleButton className={styles.buttonAdd}

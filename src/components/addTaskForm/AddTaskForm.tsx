@@ -1,29 +1,30 @@
-import { useContext, useEffect } from 'react';
-import { TodoContext } from '../../context/TodoContext.js';
-import { UiContext } from "../../context/UiContext.js"
+import type { ChangeEvent, FormEvent } from 'react';
+import { useTodoContext } from '../../context/TodoContext.js';
+import { useUiContext } from "../../context/UiContext.js"
 import Field from '../Field/Field.js';
 import PurpleButton from '../PurpleButton/PurpleButton.js';
 import styles from './AddTaskForm.module.scss';
+import type { OnFormType, OnInputType } from '../../utils.js';
 
 const AddTaskForm = () => {
     const {
         setNewTaskTitle,
         newTaskTitle,
         addTasks,
-    } = useContext(TodoContext)
+    } = useTodoContext();
 
     const {
         setIsOpenModalWin,
-    } = useContext(UiContext)
+    } = useUiContext()
 
-    const onSubmit = (event) => {
+    const onSubmit = (event: OnFormType) => {
             event.preventDefault();
             addTasks(newTaskTitle)
             setIsOpenModalWin(false)
             setNewTaskTitle('');
     }
 
-    const onReset = (event) => {
+    const onReset = (event: OnFormType) => {
         event.preventDefault()
         setIsOpenModalWin(false)
     }
@@ -33,7 +34,7 @@ const AddTaskForm = () => {
 
             <Field id="add-task" 
             name="add-task" 
-            onInput={(event) => setNewTaskTitle(event.target.value)} 
+            onChange={(event: OnInputType) => setNewTaskTitle(event.target.value)} 
             value={newTaskTitle}
             placeholder="Input your note..."
             required={true} 

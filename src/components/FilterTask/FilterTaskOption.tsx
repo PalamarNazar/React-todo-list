@@ -1,11 +1,11 @@
-import { useContext } from "react";
-import { TodoUiContext } from "../../context/TodoContext.js";
+import { useTodoUiContext } from "../../context/TodoContext.js";
 import styles from './FiltersTask.module.scss';
+import type { ActiveOptions } from "../../utils.js";
 
-const FilterTaskOption = (props) => {
+const FilterTaskOption = (props: {option: ActiveOptions}) => {
     const { option } = props
     
-    const { activeOption, setActiveOption } = useContext(TodoUiContext);
+    const { activeOption, setActiveOption } = useTodoUiContext()
     
     return (
         <li 

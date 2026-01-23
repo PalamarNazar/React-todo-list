@@ -1,23 +1,23 @@
-import { useContext } from 'react';
 import icon from '../../assets/images/arrow-select.svg';
-import { TodoUiContext } from '../../context/TodoContext.js'
+import { useTodoUiContext } from '../../context/TodoContext.js'
 import FilterTaskOption from './FilterTaskOption.js';
 import PurpleButton from '../PurpleButton/PurpleButton.js';
-import { UiContext } from '../../context/UiContext.js';
+import { useUiContext } from '../../context/UiContext.js';
 import styles from './FiltersTask.module.scss';
+import type { Options } from '../../utils.js';
 
-const options = ['all', 'complete', 'incomplete'];
+const options: Options = ['all', 'complete', 'incomplete'];
 
 const FilterTasks = () => {
 
     const { 
         activeOption,
-     } = useContext(TodoUiContext);
+     } = useTodoUiContext()
 
     const { 
         openList,
         setOpenList,
-     } = useContext(UiContext);
+     } = useUiContext()
 
     return (
         <div className={styles.filters}>

@@ -1,12 +1,12 @@
-import { memo, useContext } from "react";
+import { memo } from "react";
 import TodoItem from "../TodoItem/TodoItem.js";
-import { TodoContext } from "../../context/TodoContext.js";
+import { useTodoContext } from "../../context/TodoContext.js";
 import detectiveDarkImage from '../../assets/images/Detective-dark.svg'
 import styles from './TodoList.module.scss';
 
 const TodoList = () => {
 
-    const { tasks, filteredTasks, isLoading } = useContext(TodoContext);
+    const { tasks, filteredTasks, isLoading } = useTodoContext()
     
     const hasTasks = tasks.length > 0;
     const isEmptyFilteredTasks = filteredTasks?.length === 0;

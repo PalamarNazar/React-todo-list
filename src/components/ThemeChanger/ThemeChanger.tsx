@@ -1,12 +1,11 @@
-import { useContext } from 'react';
-import { UiContext } from '../../context/UiContext.js'
+import { useUiContext } from '../../context/UiContext.js'
 import darkIcon from '../../assets/images/dark-theme.svg'
 import lightIcon from '../../assets/images/light-theme.svg'
-import PurpleButton from '../purpleButton/PurpleButton.js';
+import PurpleButton from '../PurpleButton/PurpleButton.jsx';
 import styles from './ThemeChanger.module.scss';
 
 const ThemeChanger = () => {
-    const {theme, setTheme} = useContext(UiContext)
+    const {theme, setTheme} = useUiContext()
     
     return (
         <PurpleButton className={styles.button}

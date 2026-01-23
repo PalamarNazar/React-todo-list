@@ -1,6 +1,11 @@
+import type { ButtonHTMLAttributes } from 'react'
 import styles from './PurpleButton.module.scss'
 
-const PurpleButton = (props) => {
+type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+    buttonTitle: string;
+}
+
+const PurpleButton = (props: ButtonProps) => {
 
     const { className = '', 
         children, 

@@ -1,17 +1,27 @@
 import { useEffect, useState } from "react";
+import { type Task, type Id } from "../../utils.js";
 import taskAPI from "../../api/tasksAPI.js";
 import PrevButton from "../../components/PrevButton/PrevButton.js";
 import styles from './TaskPage.module.scss'
 
+type TaskProps = {params: {id: Id}}
 
-const TaskPage = (props) => {
+const TaskPage = (props: TaskProps) => {
     const { params } = props
 
-    const taskId = params.id 
-
-    const [task, setTask] = useState(null);
+    const [task, setTask] = useState<Task | null>(null);
     const [loading, setLoading] = useState(true);
     const [hasError, setHasError] = useState(false);
+
+    const errorMessage = () => ( 
+            <>
+            <PrevButton />
+                <div className={`${styles.details} container`}>
+                    <h1>Error, task not found</h1>
+                </div>
+            </>)
+
+    const taskId = params.id 
 
     useEffect(() => {
         const taskData = taskAPI.getById(taskId)
@@ -21,8 +31,10 @@ const TaskPage = (props) => {
         } else {
             setTask(taskData);
         }
-
         setLoading(false)
+
+        
+
     }, [taskId])
 
     if(loading) {
@@ -33,15 +45,8 @@ const TaskPage = (props) => {
         )
     }
 
-    if(hasError) {
-        return (
-            <>
-            <PrevButton />
-                <div className={`${styles.details} container`}>
-                    <h1>Error, task not found</h1>
-                </div>
-            </>
-        )
+    if(hasError || !task) {
+        return errorMessage()
     }
 
     return (

@@ -1,16 +1,19 @@
-import { useMemo } from "react";
-import { createContext } from "react";
-import { useTodo } from "../hooks/useTodo.ts";
+import { useMemo, createContext, type ReactNode, useContext } from "react";
+import { type TodoContextTypes,  type TodoUiContextTypes } from "../utils.js"
+import { useTodo } from "../hooks/useTodo.js";
 
-export const TodoContext = createContext({});
-export const TodoUiContext = createContext({})
+export const TodoContext = createContext<TodoContextTypes | null>(null);
+export const TodoUiContext = createContext<TodoUiContextTypes | null>(null)
 
-export const TodoProvider = ({children}) => {
+type contextProps = {
+    children: ReactNode,
+}
+
+export const TodoProvider = ({children}: contextProps) => {
     
     const {
         tasks,
         toggleCheckedTask,
-        setTasks,
         newTaskTitle,
         setNewTaskTitle,
         searchTaskTitle,
@@ -25,18 +28,15 @@ export const TodoProvider = ({children}) => {
         setEditingTaskTitle,
         editingTaskId, 
         setEditingTaskId,
-        openList,
-        setOpenList,
         editInputRef,
         editTaskApply,
         animation,
         isLoading,
     } = useTodo();
 
-    const TodoValue =  useMemo(() => ({
+    const TodoValue: TodoContextTypes =  useMemo(() => ({
         tasks,
         toggleCheckedTask,
-        setTasks,
         newTaskTitle,
         setNewTaskTitle,
         filteredTasks,
@@ -53,7 +53,6 @@ export const TodoProvider = ({children}) => {
     }), [
         tasks,
         toggleCheckedTask,
-        setTasks,
         newTaskTitle,
         setNewTaskTitle,
         filteredTasks,
@@ -68,22 +67,18 @@ export const TodoProvider = ({children}) => {
         editTaskApply,
         isLoading,
     ])
-    const TodoUiValue =  useMemo(() => ({
+    const TodoUiValue: TodoUiContextTypes =  useMemo(() => ({
         activeOption,
-        openList,
         animation,
         searchTaskTitle,
         setSearchTaskTitle,
         setActiveOption,
-        setOpenList
     }), [
         activeOption,
-        openList,
         animation,
         searchTaskTitle,
         setSearchTaskTitle,
         setActiveOption,
-        setOpenList,
     ])
 
     return (
@@ -93,4 +88,16 @@ export const TodoProvider = ({children}) => {
             </TodoUiContext.Provider>
         </TodoContext.Provider>
     )
+}
+
+export const useTodoContext = () => {
+    const context = useContext(TodoContext);
+    if (!context) throw new Error('useTodoContext must be used')
+    return context
+}
+
+export const useTodoUiContext = () => {
+    const context = useContext(TodoUiContext);
+    if (!context) throw new Error('useTodoContext must be used')
+    return context
 }

@@ -1,22 +1,23 @@
-import { useContext } from "react";
-import { TodoContext } from "../../context/TodoContext.js";
+import type { ChangeEvent, FormEvent } from "react";
+import { useTodoContext } from "../../context/TodoContext.js";
 import Field from "../Field/Field.js";
 import PurpleButton from "../PurpleButton/PurpleButton.js";
 import styles from './EditForm.module.scss'
+import type { Id, OnFormType, OnInputType } from "../../utils.js";
 
-const EditForm = (props) => {
-
+const EditForm = (props: {id: Id}) => {
     const { id } = props;
 
     const { 
-            editingTaskTitle,
-            setEditingTaskTitle,
-            editInputRef,
-            editTaskApply
-        } = useContext(TodoContext);
+        editingTaskTitle,
+        setEditingTaskTitle,
+        editInputRef,
+        editTaskApply
+    } = useTodoContext()
 
-    const onSubmit = (event) => {
+    const onSubmit = (event: OnFormType) => {
         event.preventDefault();
+        if (!editInputRef.current) return;
         editTaskApply(id, editInputRef.current.value)
     }
 
@@ -27,7 +28,7 @@ const EditForm = (props) => {
         <Field
         id="edit-field"
         value={editingTaskTitle}
-        onInput={(event) => setEditingTaskTitle(event.target.value)}
+        onChange={(event: OnInputType) => setEditingTaskTitle(event.target.value)}
         ref={editInputRef}
          />
 

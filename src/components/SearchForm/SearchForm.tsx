@@ -1,12 +1,12 @@
-import { useContext } from 'react';
-import { TodoUiContext } from '../../context/TodoContext.js';
+import { type InputHTMLAttributes } from 'react';
+import { useTodoUiContext } from '../../context/TodoContext.js';
 import Field from '../Field/Field.js';
 import styles from './SearchForm.module.scss';
 
-const SearchForm = (props) => {
+const SearchForm = (props: InputHTMLAttributes<HTMLInputElement>) => {
     const { className } = props
 
-    const { setSearchTaskTitle, searchTaskTitle } = useContext(TodoUiContext);
+    const { setSearchTaskTitle, searchTaskTitle } = useTodoUiContext()
 
     return (
         <form className={`${className} ${styles.form}`} onSubmit={(event) => event.preventDefault()}>
@@ -22,7 +22,7 @@ const SearchForm = (props) => {
             autoComplete="off"
             id="search-field"
             value={searchTaskTitle}
-            onInput={(event) => setSearchTaskTitle(event.target.value)}
+            onChange={(event) => setSearchTaskTitle(event.target.value)}
             />
 
             <span className={styles.searchIcon}>

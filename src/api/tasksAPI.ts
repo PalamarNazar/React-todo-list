@@ -1,13 +1,18 @@
+import {  type Task, type Tasks, type Id , type isDone, type Title } from "../utils.js";
+
 const KEY = 'tasks'
 
 // // const URL = "http://localhost:3001/tasks";
 
 // // const headers = {'Content-Type': 'application/json'};
 
-
 const getItems = () => {
-    const data = JSON.parse(localStorage.getItem(KEY))
-    return data ? data : []
+    const storageItem: string | null = localStorage.getItem(KEY)
+
+    if (!storageItem) return [];
+
+    const data: Tasks = JSON.parse(storageItem)
+    return data
 }
 
 const taskAPI = {
@@ -19,17 +24,16 @@ const taskAPI = {
         return getItems()
     },
 
-    getById: (id) => {
+    getById: (id: Id) => {
         // return fetch(`${URL}/${id}`).then((response) => {
         //     if (!response.ok) return;
         //     return response.json()
         // })
-        if (!id) return null;
         const prevTasks = getItems();
-        return prevTasks.find(task => task.id === id);   
+        return prevTasks.find(task => task.id === id) ?? null;   
     },
 
-    add: (task) => {
+    add: (task: Task) => {
         // return fetch(URL, {
         //     method: 'POST',
         //     headers,
@@ -47,21 +51,20 @@ const taskAPI = {
 
     },
 
-    delete: (id) => {
+    delete: (id: Id) => {
         // return fetch(`${URL}/${id}`, {method: 'DELETE'})
         // .then((response) => {
         //     if(!response.ok) return;
         // })
-        if (id) {
-            const prevTasks = getItems();
-            const filteredTasks = prevTasks.filter(task => task.id !== id)
-            localStorage.setItem(KEY, JSON.stringify([...filteredTasks]))
-            return id
-        } 
-        return null
+        if (!id) return null 
+
+        const prevTasks = getItems();
+        const filteredTasks = prevTasks.filter(task => task.id !== id)
+        localStorage.setItem(KEY, JSON.stringify([...filteredTasks]))
+        return id
     },
 
-    toggleComplete: (id, isDone) => {
+    toggleComplete: (id: Id, isDone: isDone) => {
         // return fetch(`${URL}/${id}`, {
         //     method: 'PATCH',
         //     headers,
@@ -70,6 +73,7 @@ const taskAPI = {
         //     if(!response.ok) return    
         // })
         if (!id) return null;
+        
         const prevTasks = getItems();
         const updateTasks = prevTasks.map((task) => {
             return task.id === id 
@@ -80,7 +84,7 @@ const taskAPI = {
         return id
     },
 
-    editTask: (id, title) => {
+    editTask: (id: Id, title: Title) => {
     //     return fetch(`${URL}/${id}`, {
     //         method: 'PATCH',
     //         headers,

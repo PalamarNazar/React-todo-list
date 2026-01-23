@@ -1,7 +1,8 @@
-import { UiProvider } from "./context/UiContext.tsx"
-import Router from "./Router.tsx"
-import ListPage from "./Pages/ListPage/ListPage.tsx"
-import TaskPage from "./Pages/TaskPage/TaskPage.tsx"
+import { UiProvider } from "./context/UiContext.jsx"
+import Router from "./Router.jsx"
+import ListPage from "./Pages/ListPage/ListPage.jsx"
+import TaskPage from "./Pages/TaskPage/TaskPage.jsx"
+import type { JSX } from "react"
 
 const App = () => {
   const routes = {

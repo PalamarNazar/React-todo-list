@@ -1,27 +1,35 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type JSX, } from "react";
 
 const BASE = "/React-todo-list";
 
-const getPathName = () => {
+type RouteParams = Record<string, string>;
+
+type RoutesComponent = (props: {params: RouteParams}) => JSX.Element;
+
+const getPathName = (): string => {
     return window.location.hash 
     ? window.location.hash.replace("#", '') || '/'
     : window.location.pathname.replace(BASE, '')
 }
 
-const matchRoutes = (path, route) => {
+const matchRoutes = (path: string, route: string): RouteParams | null => {
+    const params: RouteParams = {}
+
     const pathName = path.split('/');
     const routeName = route.split('/');
 
-    const params = {}
     
     if (routeName.length !== pathName.length) return null;
     
     for (let i = 0; i < routeName.length; i++) {
-        if(routeName[i].startsWith(':')) {
-            const paramName = routeName[i].slice(1);
+        const routePart = routeName[i]!
+        const pathPart = pathName[i]!
 
-            params[paramName] = pathName[i]
-        } else if (pathName[i] !== routeName[i]) {
+        if(routePart.startsWith(':')) {
+            const paramName = routePart.slice(1);
+
+            params[paramName] = pathPart
+        } else if (pathPart !== routePart) {
             return null
         }
     }
@@ -29,7 +37,7 @@ const matchRoutes = (path, route) => {
     return params
 }
 
-export const useRouter = () => {
+export const useRouter = (): string => {
     const [path, setPath] = useState(getPathName())
 
     useEffect(() => {
@@ -49,20 +57,20 @@ export const useRouter = () => {
 
 }
 
-const Router = ({ routes }) => {
+const Router = ({ routes }: {routes: any}): JSX.Element => {
     const path = useRouter()
 
     for (const route in routes) {
         const params = matchRoutes(path, route)
 
         if(params) {
-            const Page = routes[route];
+            const Page = routes[route] as RoutesComponent;
             return <Page params={params} />
         }
     }
 
     const NotFound = routes['*']
-    return <NotFound />
+    return <NotFound params={{}} />
     
 }
 

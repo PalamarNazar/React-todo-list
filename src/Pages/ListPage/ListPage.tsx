@@ -1,7 +1,7 @@
-import Todo from "../../components/Todo/Todo.tsx"
-import { TodoProvider } from '../../context/TodoContext.tsx'
-import ModalWin from "../../components/ModalWin/ModalWin.tsx"
-import Overlay from "../../components/Overlay/Overlay.tsx"
+import Todo from "../../components/Todo/Todo.jsx"
+import { TodoProvider } from '../../context/TodoContext.jsx'
+import ModalWin from "../../components/ModalWin/ModalWin.jsx"
+import Overlay from "../../components/Overlay/Overlay.jsx"
 
 const ListPage = () => {
     return (

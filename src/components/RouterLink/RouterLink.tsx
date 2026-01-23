@@ -1,4 +1,10 @@
-const RouterLink = (props) => {
+import type { AnchorHTMLAttributes, MouseEvent } from "react";
+
+type LinkProps = AnchorHTMLAttributes<HTMLAnchorElement> & {
+    to: string;
+}
+
+const RouterLink = (props: LinkProps) => {
 
     const {
         to,
@@ -6,7 +12,7 @@ const RouterLink = (props) => {
         ...rest
     } = props
 
-    const handlerClick = (event) => {
+    const handlerClick = (event: MouseEvent<HTMLAnchorElement>) => {
         event.preventDefault();
         window.history.pushState({}, '', to)
         window.dispatchEvent(new PopStateEvent('popstate'));

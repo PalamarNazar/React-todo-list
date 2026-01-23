@@ -1,15 +1,20 @@
-import { useContext } from 'react';
-import { TodoContext, TodoUiContext } from '../../context/TodoContext.js';
+import { useTodoContext, useTodoUiContext } from '../../context/TodoContext.js';
+import type { Id } from '../../utils.js';
 import styles from './ItemControls.module.scss';
 
-const ItemControls = (props) => {
+type ItemControlsProps = {
+    taskId: Id;
+    className?: string;
+}
+
+const ItemControls = (props: ItemControlsProps) => {
     const { taskId, className = "" } = props
 
-    const { deleteTask, startEditTask } = useContext(TodoContext);
+    const { deleteTask, startEditTask } = useTodoContext()
 
     const { 
         animation,
-    } = useContext(TodoUiContext);
+    } = useTodoUiContext()
 
     return (
         <div className={className}>
