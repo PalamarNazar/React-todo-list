@@ -1,27 +1,27 @@
 # TodoList App
 
 
-Современное веб-приложение для управления задачами (TodoList), разработанное на **React + Vite** с использованием **SCSS**.  
-Приложение поддерживает полный CRUD для задач, фильтрацию, поиск, смену темы и страницу деталей задачи без использования React Router.
+A modern task management web application (TodoList), developed in React + Vite using SCSS.
+The application supports full CRUD for tasks, filtering, searching, theme changes, and a task details page without using React Router.
 
-## 🚀 Функциональность
+## 🚀 Functionality
 
-- ➕ **Добавление задач**
-- ✏️ **Редактирование задач**
-- 🗑 **Удаление задач**
-- ✅ **Отметка задач как выполненных / невыполненных**
-- 🔍 **Поиск задач по названию**
-- 📂 **Фильтрация задач**:
-  - все задачи
-  - выполненные
-  - невыполненные
-- 🌗 **Смена темы** (светлая / тёмная)
-- 📄 **Страница деталей задачи (Task Details)**  
-  - реализована без React Router  
-  - отображается через условный рендеринг
-- 💾 **Сохранение состояния** (например, в LocalStorage)
+- ➕ **Adding tasks**
+- ✏️ **Editing tasks**
+- 🗑 **Deleting tasks**
+- ✅ **Marking tasks as completed/not completed**
+- 🔍 **Search for tasks by name**
+- 📂 **Filtering tasks**:
+  - All tasks
+  - Completed
+  - Incomplete
+  - 🌗 **Theme switching** (light/dark)
+  - 📄 **Task Details page**
+  - Implemented without React Router
+  - Rendered via conditional rendering
+  - 💾 **State saving** (e.g., in LocalStorage)
 
-## 🛠 Используемые технологии
+## 🛠 Stack
 
 - **React**
 - **Vite**
@@ -32,9 +32,9 @@
 
 https://palamarnazar.github.io/React-todo-list/
 
-Проект можно открыть и протестировать прямо в браузере без установки.
+The project can be opened and tested directly in the browser without installation.
 
 ## 👨‍💻 P.S.
 
-Проект выполнен в учебных и практических целях.  
-Если проект был полезен — ⭐ поставь звезду репозиторию!
+This project was created for educational and practical purposes.
+If you found this project useful, please ⭐ star the repository!
